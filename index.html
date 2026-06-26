@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Water — A Descent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Welcome to my site!</h1>
-    <p>Coming soon...</p>
+
+  <div class="gauge" aria-hidden="true">
+    <span class="read">SEA&nbsp;LEVEL</span>
+    <span class="line"></span>
+    <span class="read"><b id="depthReadout">0</b>&nbsp;M</span>
+  </div>
+
+  <header class="hero">
+    <div class="caustics"></div>
+    <div class="wrap">
+      <p class="eyebrow">H₂O · the surface</p>
+      <h1 class="title">Water<em>the one thing everything else depends on</em></h1>
+      <p class="lede">Two parts hydrogen, one part oxygen — and almost every rule it follows is an exception. Scroll to sink beneath the surface.</p>
+    </div>
+    <div class="scrollcue"><span class="dot"></span> descend</div>
+  </header>
+
+  <section class="zone reveal" id="sunlight">
+    <div class="wrap">
+      <div class="zonehead">
+        <span class="depth">0 – 200 m</span>
+        <span class="zonekicker">Sunlight zone · epipelagic</span>
+      </div>
+      <h2>Where light still reaches</h2>
+      <p>The thin, bright lid of the ocean. Sunlight pours through the first two hundred metres, and almost everything that breathes oxygen on this planet has it traced back here — to drifting plankton turning light into life. Above it, the surface keeps trading water with the sky, lifting it into cloud and letting it fall again.</p>
+      <div class="facts">
+        <div class="fact"><span class="n">71%</span><span class="l">of Earth's surface is water</span></div>
+        <div class="fact"><span class="n">~50%</span><span class="l">of our oxygen begins in this layer</span></div>
+        <div class="fact"><span class="n">60%</span><span class="l">of the human body is water</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="zone reveal" id="twilight">
+    <div class="wrap">
+      <div class="zonehead">
+        <span class="depth">200 – 1000 m</span>
+        <span class="zonekicker">Twilight zone · mesopelagic</span>
+      </div>
+      <h2>Where the sun gives <span class="glow">up</span></h2>
+      <p>Colour drains away first — red, then orange, then everything but a deep blue dusk. Too dark for plants, the twilight zone runs on what falls from above and on light made by the living: faint pulses of <em>bioluminescence</em> flickering in the cold. Pressure here is already crushing, around fifty to a hundred times what you feel at sea level.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="zone reveal" id="midnight">
+    <div class="wrap">
+      <div class="zonehead">
+        <span class="depth">1000 – 4000 m</span>
+        <span class="zonekicker">Midnight zone · bathypelagic</span>
+      </div>
+      <h2>The <span class="glow">midnight</span> water</h2>
+      <p>No sunlight has ever touched this far down. It is permanently black, a few degrees above freezing, and stranger than most of the surface world imagines — anglerfish carrying their own lanterns, creatures that have never known a shadow because they have never known light. And yet it is still the same molecule as a raindrop, a teardrop, the glass on your desk.</p>
+      <div class="facts">
+        <div class="fact"><span class="n">96.5%</span><span class="l">of Earth's water is in the ocean</span></div>
+        <div class="fact"><span class="n">+1 atm</span><span class="l">of pressure every 10 m down</span></div>
+        <div class="fact"><span class="n">~4 °C</span><span class="l">the deep sea, almost everywhere</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="zone reveal" id="abyss">
+    <div class="wrap">
+      <div class="zonehead">
+        <span class="depth">4000 – 11,000 m</span>
+        <span class="zonekicker">The abyss · hadal zone</span>
+      </div>
+      <h2>The bottom of everything</h2>
+      <p>Down past the abyssal plains lie the trenches — the deepest, the Challenger Deep, falls nearly eleven kilometres. The weight of the water above is over a thousand times the pressure at the surface, enough to fold steel. Life persists anyway. We have mapped the far side of the Moon in more detail than this floor beneath our own oceans.</p>
+      <p>Strange, then, that the same substance — frozen — chooses to <em>float</em>. Ice is one of the few solids lighter than its own liquid, and that single quirk is why ponds freeze from the top down instead of solid, and why anything survives a winter at all.</p>
+    </div>
+  </section>
+
+  <section class="closing reveal">
+    <div class="wrap">
+      <p class="big">Every drop you'll ever drink has been here before — surface, twilight, and abyss alike.</p>
+      <p class="sig">return to the surface ↑</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>WATER · A DESCENT</span>
+      <span>2 H · 1 O</span>
+    </div>
+  </footer>
+
+<script>
+  const MAXDEPTH = 11000;
+  const out = document.getElementById('depthReadout');
+  let ticking = false;
+  function updateDepth(){
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    const d = Math.round(p * MAXDEPTH);
+    out.textContent = d.toLocaleString();
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(updateDepth); ticking = true; }
+  }, {passive:true});
+  updateDepth();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:0.16});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
