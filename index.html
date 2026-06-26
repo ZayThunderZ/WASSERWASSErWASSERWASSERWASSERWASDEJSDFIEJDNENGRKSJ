@@ -9,53 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --foam:#eaf7f8;
-    --surface:#8fd4dc;
-    --shallow:#2e9aab;
-    --teal:#15677a;
-    --deep:#0a3344;
-    --abyss:#041820;
-    --abyss-black:#02090d;
-
-    --sun:#f4e2b0;     /* light through water — used only near the surface */
-    --bio:#7cf5c8;     /* bioluminescence — the only light in the deep */
-
-    --ink:#eaf7f8;
-    --muted:rgba(234,247,248,.62);
-    --hair:rgba(234,247,248,.16);
-
+    --foam:#eaf7f8; --surface:#8fd4dc; --shallow:#2e9aab; --teal:#15677a;
+    --deep:#0a3344; --abyss:#041820; --abyss-black:#02090d;
+    --sun:#f4e2b0; --bio:#7cf5c8;
+    --ink:#eaf7f8; --muted:rgba(234,247,248,.62); --hair:rgba(234,247,248,.16);
     --display:"Cormorant", Georgia, serif;
     --body:"Karla", system-ui, sans-serif;
     --mono:"Space Mono", ui-monospace, monospace;
   }
-
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    font-family:var(--body);
-    color:var(--ink);
-    line-height:1.65;
+    margin:0; font-family:var(--body); color:var(--ink); line-height:1.65;
     background:var(--abyss-black);
-    background-image:linear-gradient(
-      180deg,
-      var(--foam)        0%,
-      var(--surface)     7%,
-      var(--shallow)     20%,
-      var(--teal)        38%,
-      var(--deep)        58%,
-      var(--abyss)       80%,
-      var(--abyss-black) 100%
-    );
-    background-attachment:fixed;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    background-image:linear-gradient(180deg,
+      var(--foam) 0%, var(--surface) 7%, var(--shallow) 20%, var(--teal) 38%,
+      var(--deep) 58%, var(--abyss) 80%, var(--abyss-black) 100%);
+    background-attachment:fixed; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-
   ::selection{background:var(--bio);color:var(--abyss-black);}
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--bio);outline-offset:3px;border-radius:2px;}
-
   .wrap{max-width:980px;margin:0 auto;padding:0 28px;}
 
   .gauge{
@@ -83,18 +57,22 @@
   h1.title{
     font-family:var(--display);font-weight:300;
     font-size:clamp(5rem,22vw,15rem);line-height:.82;letter-spacing:-.02em;
-    margin:0;color:var(--deep);
-    text-shadow:0 1px 0 rgba(255,255,255,.35);
+    margin:0;color:var(--deep);text-shadow:0 1px 0 rgba(255,255,255,.35);
   }
   h1.title em{
     font-style:italic;font-weight:300;display:block;
     font-size:clamp(1.8rem,6vw,3.4rem);letter-spacing:.01em;
     color:var(--shallow);margin-top:.35em;text-shadow:none;
   }
-  .lede{
-    max-width:34ch;margin:34px 0 0;font-size:clamp(1.05rem,2.2vw,1.3rem);
-    color:var(--teal);font-weight:400;
+  .lede{max-width:34ch;margin:34px 0 0;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--teal);}
+  .howto-btn{
+    display:inline-block;margin-top:34px;text-decoration:none;
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);background:rgba(255,255,255,.35);
+    border:1px solid var(--teal);border-radius:100px;padding:13px 24px;cursor:pointer;
+    transition:background .25s ease,transform .25s ease,color .25s ease;
   }
+  .howto-btn:hover{background:var(--teal);color:var(--foam);transform:translateY(-2px);}
   .scrollcue{
     position:absolute;left:28px;bottom:38px;font-family:var(--mono);font-size:11px;
     letter-spacing:.26em;text-transform:uppercase;color:var(--teal);
@@ -109,8 +87,7 @@
       radial-gradient(60% 40% at 22% 18%, rgba(255,255,255,.55), transparent 60%),
       radial-gradient(50% 38% at 78% 26%, rgba(255,255,255,.4), transparent 60%),
       radial-gradient(40% 30% at 50% 8%, var(--sun), transparent 70%);
-    mix-blend-mode:soft-light;
-    animation:drift 14s ease-in-out infinite alternate;
+    mix-blend-mode:soft-light;animation:drift 14s ease-in-out infinite alternate;
   }
   @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1.05);}to{transform:translate3d(3%,2%,0) scale(1.12);}}
 
@@ -179,6 +156,7 @@
       <p class="eyebrow">H₂O · the surface</p>
       <h1 class="title">Water<em>the one thing everything else depends on</em></h1>
       <p class="lede">Two parts hydrogen, one part oxygen — and almost every rule it follows is an exception. Scroll to sink beneath the surface.</p>
+      <a class="howto-btn" href="step-by-step.html">How to drink water →</a>
     </div>
     <div class="scrollcue"><span class="dot"></span> descend</div>
   </header>
@@ -266,8 +244,7 @@
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
     const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-    const d = Math.round(p * MAXDEPTH);
-    out.textContent = d.toLocaleString();
+    out.textContent = Math.round(p * MAXDEPTH).toLocaleString();
     ticking = false;
   }
   window.addEventListener('scroll', () => {
