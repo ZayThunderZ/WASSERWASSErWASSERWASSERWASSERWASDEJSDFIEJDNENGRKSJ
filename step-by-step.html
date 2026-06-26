@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Drink Water — Step by Step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Karla:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --foam:#eaf7f8; --surface:#8fd4dc; --shallow:#2e9aab; --teal:#15677a;
+    --deep:#0a3344; --abyss:#041820; --abyss-black:#02090d;
+    --sun:#f4e2b0; --bio:#7cf5c8;
+    --ink:#eaf7f8; --muted:rgba(234,247,248,.62); --hair:rgba(234,247,248,.16);
+    --display:"Cormorant", Georgia, serif;
+    --body:"Karla", system-ui, sans-serif;
+    --mono:"Space Mono", ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:var(--body);color:var(--ink);line-height:1.65;
+    background:linear-gradient(180deg,var(--deep),var(--abyss) 70%,var(--abyss-black));
+    background-attachment:fixed;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  ::selection{background:var(--bio);color:var(--abyss-black);}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--bio);outline-offset:3px;border-radius:2px;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+  .back{
+    display:inline-block;margin:48px 0 0;text-decoration:none;
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--surface);transition:color .2s ease;
+  }
+  .back:hover{color:var(--bio);}
+
+  header.top{padding:30px 0 64px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--bio);display:flex;align-items:center;gap:14px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:42px;height:1px;background:currentColor;}
+  h1{
+    font-family:var(--display);font-weight:300;letter-spacing:-.02em;
+    font-size:clamp(3rem,12vw,6rem);line-height:.9;margin:0;color:var(--foam);
+  }
+  .sub{max-width:42ch;margin:24px 0 0;font-size:1.1rem;color:var(--muted);}
+
+  ol.steps{list-style:none;counter-reset:step;margin:0 0 40px;padding:0;}
+  ol.steps li{
+    counter-increment:step;position:relative;
+    padding:30px 0 30px 84px;border-top:1px solid var(--hair);
+  }
+  ol.steps li::before{
+    content:counter(step,decimal-leading-zero);
+    position:absolute;left:0;top:28px;
+    font-family:var(--mono);font-size:15px;letter-spacing:.04em;
+    color:var(--bio);
+  }
+  ol.steps h2{
+    font-family:var(--display);font-weight:500;
+    font-size:clamp(1.6rem,5vw,2.3rem);line-height:1;margin:0 0 .4em;color:var(--foam);
+  }
+  ol.steps p{margin:0;max-width:52ch;color:var(--ink);opacity:.9;}
+
+  .note{
+    border:1px solid var(--hair);border-radius:14px;
+    background:rgba(2,9,13,.3);padding:28px 26px;margin-bottom:80px;
+    font-family:var(--mono);font-size:12.5px;line-height:1.8;letter-spacing:.02em;color:var(--muted);
+  }
+  .note b{color:var(--surface);}
+
+  footer{border-top:1px solid var(--hair);padding:30px 0 60px;}
+  footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--muted);}
+
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <a class="back" href="index.html">← back to the surface</a>
+
+    <header class="top">
+      <p class="eyebrow">field guide</p>
+      <h1>How to drink water</h1>
+      <p class="sub">The oldest instruction in the world, in five unhurried steps.</p>
+    </header>
+
+    <ol class="steps">
+      <li>
+        <h2>Find a clean vessel</h2>
+        <p>A glass, a bottle, cupped hands in a pinch. Water isn't picky about what holds it.</p>
+      </li>
+      <li>
+        <h2>Fill it with fresh, cool water</h2>
+        <p>Tap water is fine in most places — let it run for a second first so it's cold and clear.</p>
+      </li>
+      <li>
+        <h2>Bring it to your lips</h2>
+        <p>Tilt the vessel slowly until the water meets your mouth. There's no need to hurry the ocean.</p>
+      </li>
+      <li>
+        <h2>Sip, don't gulp</h2>
+        <p>Smaller mouthfuls are easier to absorb and gentler on you than racing to the bottom of the glass.</p>
+      </li>
+      <li>
+        <h2>Repeat through the day</h2>
+        <p>Drink roughly when you're thirsty, and a little more in heat or after exercise. Your body keeps good track.</p>
+      </li>
+    </ol>
+
+    <div class="note">
+      <b>Rough target:</b> around 2 litres a day suits many adults, but your body, climate, and activity set the real number. Pale-yellow is the colour you're aiming for.
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span>WATER · A DESCENT</span>
+      <span>2 H · 1 O</span>
+    </div>
+  </footer>
+
+</body>
+</html>
 
